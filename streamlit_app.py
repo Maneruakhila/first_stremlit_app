@@ -10,7 +10,7 @@ streamlit.text('Hard-boiled Free-Raange Egg')
 streamlit.text('Avocado toast')
 
 
-streamlit.header('BUild Your Own Fruit Smoothie')
+streamlit.header('Build Your Own Fruit Smoothie')
 
 
 
