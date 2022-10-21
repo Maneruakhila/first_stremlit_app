@@ -1,4 +1,1 @@
-#requirements.txt
-snowflake-connector-python
 
-import snowflaje.connector
