@@ -49,7 +49,7 @@ streamlit.dataframe(fruityvice_normalized)
 
 
 
-
+streamlit.stop()
 
 #requirements.txt
 import snowflake.connector
