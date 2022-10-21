@@ -54,30 +54,10 @@ streamlit.dataframe(fruityvice_normalized)
 #requirements.txt
 import snowflake.connector
 
-streamlit.header("Visit our Fruit list - Add your Favorites!")
-#Snowflake related function
-def get_fruit_load_list():
-   with my_cnx.cursor() as my_cur:
-        my_cur.execute('select * from fruit_load_list')
-        return my_cur.fetchall()
-#Add  button to load the fruit
-if streamlit.button('Get Fruit load list!'):
-   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-   my_data_rows = get_fruit_load_list()
-   my_cnx.close()
-   streamlit.dataframe(my_data_rows)
-    
-#Allow the end user to ad a fruit to the list
-def insert_row_snowflake(new_fruit):
-   with my_cnx.cursor() as my_cur:
-      my_cur.execute("insert into fruit_load_list values('"+ new_fruit+"')")
-      return "Thanks For Adding "+ new_fruit
-add_my_fruit = streamlit.text_input('What Fruit Would You Like To Add?')
-if streamlit.button('Add a fruit to the list:'):
-   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-   back_from_function = insert_row_snowflake(add_my_fruit)
-   streamlit.text(back_from_function)
-   
-streamlit.stop()
-
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT * from fruit_load_list")
+my_data_rows = my_cur.fetchall()
+streamlit.header("The fruit load list contains:")
+streamlit.dataframe(my_data_rows)
 
